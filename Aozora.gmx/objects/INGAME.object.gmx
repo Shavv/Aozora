@@ -27,9 +27,206 @@
             <kind>1</kind>
             <string>///init
 key_init()
+
+
+//font
+global.hpfont=font_add_sprite  (spr_font_2,ord(" "),0,-4)
+
+
+
+//testing
+swap=0
+swapmax=2
 </string>
           </argument>
         </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///create instances
+instance_create(0,0,HITBOX)
+instance_create(0,0,BG)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///swap
+if keyboard_check_pressed(vk_f2)
+{
+ swap+=1
+}
+if keyboard_check_pressed(vk_f1)
+{
+ swap-=1
+}
+
+if swap&lt;0
+{
+ swap=swapmax
+}
+if swap&gt;swapmax
+{
+ swap=0
+}
+
+
+
+if swap=0
+{
+ if !instance_exists(obj_player_widowmaker)
+ {
+  with(parent_player)
+  {
+   instance_destroy()
+  } 
+  instance_create(0,0,obj_player_widowmaker)
+ }
+}
+
+if swap=1
+{
+ if !instance_exists(obj_player_lyonar)
+ {
+  with(parent_player)
+  {
+   instance_destroy()
+  } 
+  instance_create(0,0,obj_player_lyonar)
+ }
+}
+
+if swap=2
+{
+ if !instance_exists(obj_player_templar)
+ {
+  with(parent_player)
+  {
+   instance_destroy()
+  } 
+  instance_create(0,0,obj_player_templar)
+ }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///pointer
+draw_sprite_ext(spr_pointer,-0.5,parent_player.x,parent_player.y-parent_player.pointer_height,1,1,0,c_white,1)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="123">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///
+instance_create(0,0,obj_ai)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="115">
+      <action>
+        <libid>1</libid>
+        <id>531</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_fullscreen</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="27">
+      <action>
+        <libid>1</libid>
+        <id>332</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_end_game</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
     </event>
   </events>
