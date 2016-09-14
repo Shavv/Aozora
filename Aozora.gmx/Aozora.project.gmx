@@ -3,6 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
+  <datafiles number="15" name="datafiles"/>
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -27,7 +28,6 @@
       <sprite>sprites\spr_armor_knight</sprite>
       <sprite>sprites\spr_lyonar_attack</sprite>
       <sprite>sprites\spr_lyonar</sprite>
-      <sprite>sprites\sprite30</sprite>
       <sprite>sprites\spr_widowmaker</sprite>
       <sprite>sprites\spr_widowmaker_attack</sprite>
       <sprite>sprites\spr_widowmaker_projectile_1</sprite>
@@ -42,7 +42,6 @@
     </sprites>
     <sprite>sprites\spr_none</sprite>
     <sprite>sprites\spr_hitbox</sprite>
-    <sprite>sprites\sprite28</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -79,13 +78,16 @@
       <object>objects\GRID</object>
       <object>objects\COLLISION</object>
       <object>objects\PROJECTILE</object>
+      <object>objects\parent_other_player</object>
       <object>objects\parent_player</object>
       <object>objects\parent_ai</object>
     </objects>
-    <object>objects\obj_que_normal</object>
+    <objects name="networking">
+      <object>objects\CLIENT</object>
+    </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\match_1</room>
+    <room>rooms\room_match</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

@@ -74,10 +74,10 @@ move+=0.1
           <argument>
             <kind>1</kind>
             <string>///draw_background
-if room=match_1
+if room=room_match
 {
- draw_background_tiled(match_1_bggg,0-(move*12),0)
- draw_background_tiled(match_1_bgg,0+move,0)
+ draw_background_tiled(match_1_bggg,0-(move*2),0)
+ draw_background_tiled(match_1_bgg,0+move/2,0)
  draw_background(match_1_bg,0,0)
 }
 </string>
