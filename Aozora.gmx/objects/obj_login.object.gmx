@@ -50,7 +50,7 @@ gms_show_login()
           <argument>
             <kind>1</kind>
             <string>///go to test room
-room=room_match
+room=match_1
 </string>
           </argument>
         </arguments>

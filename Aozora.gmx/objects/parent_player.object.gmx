@@ -6,7 +6,7 @@
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>COLLISION</parentName>
-  <maskName>&lt;undefined&gt;</maskName>
+  <maskName>spr_grid_mask</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
@@ -32,10 +32,22 @@ delay=0
 delay_timer=30
 movespeed=15
 side="blue"
-tile_x=2
-tile_y=2
 state=0
 walk_timer=10
+char="normal"
+//set team
+if instance_number(parent_other_player)=1 or instance_number(parent_other_player)=3 or instance_number(parent_other_player)=5
+{
+ tile_x=7
+ tile_y=2
+}
+if instance_number(parent_other_player)=0 or instance_number(parent_other_player)=2 or instance_number(parent_other_player)=4
+{
+ tile_x=2
+ tile_y=2
+}
+
+
 ///check team
 if tile_x&gt;4
 {
@@ -73,7 +85,6 @@ if tile_x&gt;4
             <string>///movement
 x=GRID.x+(tile_x*GRID.xx)
 y=GRID.y+(tile_y*GRID.yy)
-depth=-y
 
 ///keys
 if state=0 or (state=1 and alarm[0]&lt;=walk_timer)
@@ -149,6 +160,49 @@ if delay&gt;0 {delay-=1}
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///set variable
+gms_self_set("side",side)
+gms_self_set("hp",hp)
+gms_self_set("pointer_height",pointer_height)
+gms_self_set("char",char)
+
+gms_self_set("x",x)
+gms_self_set("y",y)
+gms_self_set("sprite_index",sprite_index)
+gms_self_set("image_index",image_index)
+gms_self_set("image_xscale",image_xscale)
+gms_self_set("image_speed",image_speed)
+
+
+
+if hp&lt;0
+{
+ hp=0
+}
+
+depth=-y
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -172,7 +226,7 @@ draw_set_font(global.hpfont)
 draw_set_halign(fa_center)
 draw_set_valign(fa_center)
 draw_set_color(c_white)
-if hp&gt;0 {draw_text_transformed(x,y+12,hp,1,1,0)}
+if hp&gt;=0 {draw_text_transformed(x,y+12,hp,1,1,0)}
 </string>
           </argument>
         </arguments>

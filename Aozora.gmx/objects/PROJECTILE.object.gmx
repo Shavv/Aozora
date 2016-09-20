@@ -6,7 +6,7 @@
   <depth>-10000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
-  <maskName>&lt;undefined&gt;</maskName>
+  <maskName>spr_grid_mask</maskName>
   <events>
     <event eventtype="2" enumb="0">
       <action>
@@ -26,13 +26,38 @@
           <argument>
             <kind>1</kind>
             <string>///destroy
+gms_instance_sync_destroy(id)
 instance_destroy()
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="COLLISION">
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///depth
+depth=-(y+1)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="parent_player">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -52,9 +77,70 @@ instance_destroy()
             <string>///dmg
 if other.side!=side
 {
+ count(other.x,other.y-other.pointer_height,c_red,dmg)
  other.hp-=dmg
+ gms_self_set("hp",other.hp)
+ gms_instance_sync_destroy(id)
  instance_destroy()
- count(c_red,dmg)
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="parent_other_player">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///dmg
+if other.side!=side
+{
+ count(other.x,other.y-other.pointer_height,c_red,dmg)
+ instance_destroy()
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_ai">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///dmg
+if other.side!=side
+{
+ count(other.x,other.y-other.pointer_height,c_red,dmg)
+ other.hp-=dmg
+ gms_instance_set(other.id,"hp",other.hp) 
+ gms_instance_sync_destroy(id)
+ instance_destroy()
 }
 </string>
           </argument>
@@ -78,8 +164,9 @@ if other.side!=side
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///
-gamemaker_version=820
+            <string>///get variables
+side=ds_map_find_value(variable_map,"side")
+dmg=ds_map_find_value(variable_map,"dmg")
 </string>
           </argument>
         </arguments>
@@ -88,17 +175,26 @@ gamemaker_version=820
     <event eventtype="7" enumb="0">
       <action>
         <libid>1</libid>
-        <id>203</id>
-        <kind>0</kind>
+        <id>603</id>
+        <kind>7</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_kill_object</functionname>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///destroy
+gms_instance_sync_destroy(id)
+instance_destroy()
+</string>
+          </argument>
+        </arguments>
       </action>
     </event>
   </events>

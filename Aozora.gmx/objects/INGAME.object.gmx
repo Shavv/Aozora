@@ -54,6 +54,10 @@ global.hpfont=font_add_sprite  (spr_font_2,ord(" "),0,-4)
             <string>///create instances
 instance_create(0,0,HITBOX)
 instance_create(0,0,BG)
+
+
+t=choose(obj_player_widowmaker,obj_player_templar,obj_player_lyonar)
+instance_create(-20,-20,t)
 </string>
           </argument>
         </arguments>
@@ -100,7 +104,7 @@ draw_sprite_ext(spr_pointer,-1,parent_player.x,parent_player.y-parent_player.poi
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///
+            <string>///test AI
 instance_create(0,0,obj_ai)
 </string>
           </argument>

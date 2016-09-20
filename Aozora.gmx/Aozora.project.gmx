@@ -3,8 +3,10 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="15" name="datafiles"/>
-  <NewExtensions/>
+  <datafiles number="4" name="datafiles"/>
+  <NewExtensions>
+    <extension index="0">extensions\GameMaker Server+(Windows)</extension>
+  </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_grid_mask</sprite>
@@ -82,12 +84,16 @@
       <object>objects\parent_player</object>
       <object>objects\parent_ai</object>
     </objects>
-    <objects name="networking">
-      <object>objects\CLIENT</object>
+    <objects name="network">
+      <object>objects\GMS</object>
+      <object>objects\obj_login</object>
+      <object>objects\SYNC</object>
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room_match</room>
+    <room>rooms\room_init</room>
+    <room>rooms\room_login</room>
+    <room>rooms\match_1</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

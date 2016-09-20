@@ -34,6 +34,7 @@ hp=mhp
 walk_timer=40
 pointer_height=54
 dmg=10
+char="lyonar"
 
 //sprite
 attack_sprite=spr_lyonar_attack
@@ -93,6 +94,28 @@ if state=1 {state=0}
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///sync
+event_inherited()
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///melee attack
 if state=0 and alarm[0]=-1
 {
@@ -126,6 +149,12 @@ if state=1
     i.side=side
     i.dmg=dmg
     i.alarm[0]=5
+    
+    //sync
+    gms_instance_sync_var_add("side",i.side)
+    gms_instance_sync_var_add("dmg",i.dmg)
+    gms_instance_sync_var_add("sprite_index",i.sprite_index)
+    gms_instance_sync(i,is_full)
    }
   }
  }

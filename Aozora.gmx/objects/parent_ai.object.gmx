@@ -26,23 +26,28 @@
           <argument>
             <kind>1</kind>
             <string>///init
+
+//sync
+gms_instance_sync(id,is_full)
+
+//init
 delay=0
 delay_timer=30
 movespeed=15
-side="red"
-tile_x=6
 tile_y=2
 
 ///check team
-if tile_x&gt;4
+if parent_player.tile_x&lt;4
 {
  side="red"
  image_xscale=-1
+ tile_x=7
 }
  else
 {
  side="blue"
  image_xscale=1
+ tile_x=2
 }
 
 ///ai movement and brain
@@ -77,77 +82,81 @@ down=0
           <argument>
             <kind>1</kind>
             <string>///movement
-x=GRID.x+(tile_x*GRID.xx)
-y=GRID.y+(tile_y*GRID.yy)
-depth=-y
-
-///keys
-if up=1
+if gms_instance_is_owner(id)
 {
- if tile_y&gt;0 and !instance_place(x,y-GRID.yy,COLLISION) and delay=0
- {
-  tile_y-=1
-  delay=delay_timer-movespeed
-  blurr(80,movespeed)
- }
-}
+ x=GRID.x+(tile_x*GRID.xx)
+ y=GRID.y+(tile_y*GRID.yy)
 
-if down=1
-{
- if tile_y&lt;4 and !instance_place(x,y+GRID.yy,COLLISION) and delay=0
+ ///keys
+ if up=1
  {
-  tile_y+=1
-  delay=delay_timer-movespeed
-  blurr(80,movespeed)
- }
-}
-
-if left=1
-{
- if side="blue"
- {
-  if tile_x&gt;0 and !instance_place(x-GRID.xx,y,COLLISION) and delay=0
+  if tile_y&gt;0 and !instance_place(x,y-GRID.yy,COLLISION) and delay=0
   {
-   tile_x-=1
+   tile_y-=1
    delay=delay_timer-movespeed
    blurr(80,movespeed)
   }
- }
- if side="red"
- {
-  if tile_x&gt;4 and !instance_place(x-GRID.xx,y,COLLISION) and delay=0
-  {
-   tile_x-=1
-   delay=delay_timer-movespeed
-   blurr(80,movespeed)
-  }  
- }
-}
+ }  
 
-if right=1
-{
- if side="blue"
+ if down=1
  {
-  if tile_x&lt;4 and !instance_place(x+GRID.xx,y,COLLISION) and delay=0
+  if tile_y&lt;4 and !instance_place(x,y+GRID.yy,COLLISION) and delay=0
   {
-   tile_x+=1
+   tile_y+=1
    delay=delay_timer-movespeed
    blurr(80,movespeed)
   }
- }
- if side="red"
+ }  
+
+ if left=1
  {
-  if tile_x&lt;8 and !instance_place(x+GRID.xx,y,COLLISION) and delay=0
+  if side="blue"
   {
-   tile_x+=1
-   delay=delay_timer-movespeed
-   blurr(80,movespeed)
-  }  
+   if tile_x&gt;0 and !instance_place(x-GRID.xx,y,COLLISION) and delay=0
+   {
+    tile_x-=1
+    delay=delay_timer-movespeed
+    blurr(80,movespeed)
+   }
+  }
+  if side="red"
+  {
+   if tile_x&gt;4 and !instance_place(x-GRID.xx,y,COLLISION) and delay=0
+   {
+    tile_x-=1
+    delay=delay_timer-movespeed
+    blurr(80,movespeed)
+   }  
+  }
  }
+
+ if right=1
+ {
+  if side="blue"
+  {
+   if tile_x&lt;4 and !instance_place(x+GRID.xx,y,COLLISION) and delay=0
+   {
+    tile_x+=1
+    delay=delay_timer-movespeed
+    blurr(80,movespeed)
+   }
+  }
+  if side="red"
+  {
+   if tile_x&lt;8 and !instance_place(x+GRID.xx,y,COLLISION) and delay=0
+   {
+    tile_x+=1
+    delay=delay_timer-movespeed
+    blurr(80,movespeed)
+   }  
+  }
+ } 
+
+ //reset delay after movement
+ if delay&gt;0 {delay-=1}
 }
 
-//reset delay after movement
-if delay&gt;0 {delay-=1}
+depth=-y  
 </string>
           </argument>
         </arguments>
@@ -189,56 +198,125 @@ if delay&gt;0 {delay-=1}
           <argument>
             <kind>1</kind>
             <string>///ai wander
-if state=0
+if gms_instance_is_owner(id)
 {
- if timer&lt;=0
+ if state=0
  {
-  timer=random_range(0,50)
-  decision=choose(0,1,2,3,4,5,6,7,8)
-  //
-  if decision=0
+  if timer&lt;=0
   {
-   up=1
-   down=0
-   left=0
-   right=0
+   timer=random_range(0,50)
+   decision=choose(0,1,2,3,4,5,6,7,8)
+   //
+   if decision=0
+   {
+    up=1
+    down=0
+    left=0
+    right=0
+   }
+   if decision=1
+   {
+    up=0
+    down=1
+    left=0
+    right=0  
+   }
+   if decision=2
+   {
+    up=0
+    down=0
+    left=1
+    right=0  
+   }
+   if decision=3
+   {
+    up=0
+    down=0
+    left=0
+    right=1 
+   }  
+   if decision&gt;=4
+   {
+    up=0
+    down=0
+    left=0
+    right=0 
+   }
   }
-  if decision=1
+   else
   {
-   up=0
-   down=1
-   left=0
-   right=0  
+   timer-=1
   }
-  if decision=2
-  {
-   up=0
-   down=0
-   left=1
-   right=0  
-  }
-  if decision=3
-  {
-   up=0
-   down=0
-   left=0
-   right=1 
-  }  
-  if decision&gt;=4
-  {
-   up=0
-   down=0
-   left=0
-   right=0 
-  }
- }
-  else
- {
-  timer-=1
- }
+ } 
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///sync
+if gms_instance_is_owner(id)
+{
+ gms_instance_set(id,"hp",hp)
+ gms_instance_set(id,"x",x)
+ gms_instance_set(id,"y",y)
+ gms_instance_set(id,"image_xscale",image_xscale)
+ gms_instance_set_string(id,"side",side)
+}
+ else
+{
+ hp=gms_instance_get(id,"hp")
+ x=gms_instance_get(id,"x")
+ y=gms_instance_get(id,"y")
+ image_xscale=gms_instance_get(id,"image_xscale")
+ side=gms_instance_get_string(id,"side")
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="22">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///get variable
+hp=ds_map_find_value(variable_map,"hp")
 
+
+///set side
+side=ds_map_find_value(variable_map,"side")
 </string>
           </argument>
         </arguments>

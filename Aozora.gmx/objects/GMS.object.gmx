@@ -26,10 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>///init
+randomize()
 gms_init(GMS)
-gms_settings(true,1,parent_player,parent_other_player)
-//gms_show_set_fonts(fnt_gms1,fnt_gms2,fnt_gms3)
+gms_settings(false,1,parent_player,parent_other_player)
+gms_show_set_fonts(fnt_gms1,fnt_gms2,fnt_gms3)
 
+gms_message_reporting(mt_none)
 </string>
           </argument>
         </arguments>
@@ -103,31 +105,7 @@ room=room_login
             <string>///step
 gms_step()
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="68">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///networking
-/*
-gms_network()
+
 </string>
           </argument>
         </arguments>

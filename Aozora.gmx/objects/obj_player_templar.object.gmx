@@ -34,6 +34,7 @@ hp=mhp
 walk_timer=40
 pointer_height=45
 dmg=25
+char="templar"
 
 //sprite
 attack_sprite=spr_templar_attack
@@ -92,7 +93,29 @@ if state=1 {state=0}
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///ranged shot
+            <string>///sync
+event_inherited()
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///magic shot
 if state=0 and alarm[0]=-1
 {
  attacked=false
@@ -131,6 +154,11 @@ if state=1
     {
      blurr(100,10)
     }
+    //sync
+    gms_instance_sync_var_add("side",i.side)
+    gms_instance_sync_var_add("dmg",i.dmg)
+    gms_instance_sync_var_add("sprite_index",i.sprite_index)
+    gms_instance_sync(i,is_full)        
    }
   }
  }
