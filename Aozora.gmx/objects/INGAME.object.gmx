@@ -31,6 +31,12 @@ key_init()
 
 //font
 global.hpfont=font_add_sprite  (spr_font_2,ord(" "),0,-4)
+
+
+
+
+//screen
+window_set_fullscreen(true)
 </string>
           </argument>
         </arguments>
@@ -56,8 +62,62 @@ instance_create(0,0,HITBOX)
 instance_create(0,0,BG)
 
 
-t=choose(obj_player_widowmaker,obj_player_templar,obj_player_lyonar)
+t=parent_player//choose(obj_player_widowmaker,obj_player_templar,obj_player_lyonar)
 instance_create(-20,-20,t)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///center view
+x=room_width/2
+view_xview = x-view_wview/2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///GUI
+/*
+draw_set_halign(fa_left)
+draw_set_valign(fa_top)
+draw_text(10,20,"View_x: "+string(view_xview[0]))
+draw_text(10,40,"View_y: "+string(view_yview[0]))
+
 </string>
           </argument>
         </arguments>

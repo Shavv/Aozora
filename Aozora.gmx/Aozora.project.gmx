@@ -13,6 +13,7 @@
     <sprite>sprites\spr_block_1</sprite>
     <sprite>sprites\spr_block_2</sprite>
     <sprite>sprites\grid_1</sprite>
+    <sprite>sprites\grid_2</sprite>
     <sprites name="button">
       <sprite>sprites\spr_normal_match</sprite>
     </sprites>
@@ -44,6 +45,7 @@
     </sprites>
     <sprite>sprites\spr_none</sprite>
     <sprite>sprites\spr_hitbox</sprite>
+    <sprite>sprites\spr_alessandra</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -66,6 +68,7 @@
   </fonts>
   <objects name="objects">
     <object>objects\INGAME</object>
+    <object>objects\DISPLAY</object>
     <object>objects\obj_ai</object>
     <object>objects\obj_player_widowmaker</object>
     <object>objects\obj_player_templar</object>
@@ -93,6 +96,8 @@
   <rooms name="rooms">
     <room>rooms\room_init</room>
     <room>rooms\room_login</room>
+    <room>rooms\room_lobby</room>
+    <room>rooms\display_init</room>
     <room>rooms\match_1</room>
   </rooms>
   <help>

@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>1593835521</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,7 +26,16 @@
           <argument>
             <kind>1</kind>
             <string>///init
-move=1
+monitor_width=display_get_width()
+monitor_height=display_get_height()
+
+application_surface_draw_enable(false)
+window_set_fullscreen(true)
+
+x_offset=(monitor_width-room_width)/2
+y_offset=(monitor_height-room_height)/2
+
+
 </string>
           </argument>
         </arguments>
@@ -49,8 +58,8 @@ move=1
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///move
-move+=0.1
+            <string>///draw surface
+draw_surface_ext(application_surface,x_offset,y_offset,1,1,0,c_white,1);
 </string>
           </argument>
         </arguments>
@@ -73,12 +82,14 @@ move+=0.1
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///draw_background
-if room=match_1
-{
- draw_background_tiled(match_1_bggg,0-(move*12),0)
- draw_background_tiled(match_1_bgg,0+move,0)
-}
+            <string>///Draw info
+draw_set_color(c_white)
+draw_text(0,0,
+
+"Monitor Width: "+string(monitor_width) +
+"#Monitor Height: "+string(monitor_height)
+
+)
 </string>
           </argument>
         </arguments>

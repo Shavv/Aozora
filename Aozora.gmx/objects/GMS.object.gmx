@@ -32,6 +32,8 @@ gms_settings(false,1,parent_player,parent_other_player)
 gms_show_set_fonts(fnt_gms1,fnt_gms2,fnt_gms3)
 
 gms_message_reporting(mt_none)
+
+//application_surface_draw_enable(false)
 </string>
           </argument>
         </arguments>
